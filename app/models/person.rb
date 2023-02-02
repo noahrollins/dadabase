@@ -1,4 +1,5 @@
 class Person < ApplicationRecord
+    has_secure_password
     has_many :kids, foreign_key: :kid_id, class_name: "KidDad"
     has_many :dads, foreign_key: :dad_id, class_name: "KidDad"
     has_many :favorites
