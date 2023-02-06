@@ -1,3 +1,3 @@
 class Comment < ApplicationRecord
-    belongs_to :moments
+    belongs_to :person
 end

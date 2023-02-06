@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_02_215339) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_053053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_215339) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "person_id"
     t.index ["moment_id"], name: "index_comments_on_moment_id"
+    t.index ["person_id"], name: "index_comments_on_person_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -63,6 +65,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_215339) do
     t.string "password_digest"
   end
 
+  create_table "person_moments", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "moment_id"
+    t.index ["moment_id"], name: "index_person_moments_on_moment_id"
+    t.index ["person_id"], name: "index_person_moments_on_person_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.bigint "person_id", null: false
     t.string "name"
@@ -79,15 +88,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_215339) do
     t.bigint "reviewed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "content"
     t.index ["reviewed_id"], name: "index_reviews_on_reviewed_id"
     t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
   end
 
   add_foreign_key "comments", "moments"
+  add_foreign_key "comments", "people"
   add_foreign_key "favorites", "people", column: "people_id"
   add_foreign_key "kid_dads", "people", column: "dad_id"
   add_foreign_key "kid_dads", "people", column: "kid_id"
   add_foreign_key "moments", "people", column: "dad_id"
+  add_foreign_key "person_moments", "moments"
+  add_foreign_key "person_moments", "people"
   add_foreign_key "pets", "people"
   add_foreign_key "reviews", "people", column: "reviewed_id"
   add_foreign_key "reviews", "people", column: "reviewer_id"

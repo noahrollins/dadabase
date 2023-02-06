@@ -1,4 +1,5 @@
 class Moment < ApplicationRecord
-    belongs_to :dad, class_name: 'Person'
-    has_many :comments
+    has_many :comments, through: :person
+    has_many :person_moments
+    has_many :persons, through: :person_moments
 end

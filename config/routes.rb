@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  resources :reviews
-  resources :kid_dads
+  resources :reviews, only: [:create, :destroy, :update]
   resources :people
-  resources :comments
-  resources :moments
-  resources :favorites
-  resources :pets
+  resources :comments, only: [:create, :destroy]
+  resources :moments, only: [:create, :destroy, :update]
+  resources :favorites, only: [:update]
+  resources :pets, only: [:create, :destroy, :update]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
