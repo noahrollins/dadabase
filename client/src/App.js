@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
+  const [user, setUser] = useState(null);
+  
+  useEffect(() =>{
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
+    fetch('/people')
+      .then(res => res.json())
+      .then(data => console.log(data))
+  },[])
+
+
+  function handleLogin(user) {
+    setUser(user);
+  }
+
+  function handleLogout() {
+    setUser(null);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Login onLogin={handleLogin}/>}/>
+        <Route path='/signup' element={<Signup />}/> 
+      </Routes>
+    </Router>
   );
 }
 
