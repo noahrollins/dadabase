@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link as RouterLink, Route } from "react-router-dom";
+import dadabasephoto from "../dadabase.jpg";
 
 function Signup({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -50,7 +51,7 @@ function Signup({ onLogin }) {
       }
     });
 
-    // fetch("/people", {
+
   }
 
   return (
@@ -58,14 +59,16 @@ function Signup({ onLogin }) {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      backgroundImage={dadabasephoto}
+      backgroundSize={"cover"}
+      backgroundPosition={"center center"}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Welcome back, Dad!</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
+          <Heading fontSize={"4xl"} color={"white"}>Welcome to DaDabase!</Heading>
+          <Text fontSize={"lg"} color={"white"}>
             Already a member?{" "}
-            <Link color={"blue.400"} as={RouterLink} to="/">
+            <Link color={"yellow.300"} as={RouterLink} to="/login">
               Login
             </Link>{" "}
             👊

@@ -13,13 +13,15 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import dadabasephoto from "../dadabase.jpg";
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -33,7 +35,10 @@ function Login({ onLogin }) {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => {
+          onLogin(user);
+          navigate("/mypage");
+        });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -45,14 +50,16 @@ function Login({ onLogin }) {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      backgroundImage={dadabasephoto}
+      backgroundSize={"cover"}
+      backgroundPosition={"center center"}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Welcome back, Dad!</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
+          <Heading fontSize={"4xl"} color={"white"}>Welcome back, Dad!</Heading>
+          <Text fontSize={"lg"} color={"white"}>
             new to DaDabase?{" "}
-            <Link color={"blue.400"} as={RouterLink} to="/signup" on>
+            <Link color={"cyan.200"} as={RouterLink} to="/signup" on>
               Signup!
             </Link>{" "}
             ✌️
@@ -91,6 +98,9 @@ function Login({ onLogin }) {
                 <Link color={"blue.400"}>Forgot password?</Link>
               </Stack>
               <Button
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{
