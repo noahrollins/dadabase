@@ -32,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<div><Landing /></div>} />
         <Route path="/login" element={<div><Login onLogin={handleLogin} /></div>} />
-        <Route path="/signup" element={<div><Signup /></div>} />
+        <Route path="/signup" element={<div><Signup onLogin={handleLogin}/></div>} />
         <Route path="/mypage" element={
           <div className="app-container">
             <Sidebar />

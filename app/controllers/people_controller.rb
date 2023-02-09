@@ -4,7 +4,11 @@ class PeopleController < ApplicationController
     end
 
     def show
-        render json: person, include: [], serializer:  , status: 200
+        render json: person, include: [:comments, :dads, :favorites, :kids, :person_moments, :pets, :reviews, :reviewed_by], 
+               serializer: [PersonWithCommentssSerializer, PersonWithDadsSerializer, PersonWithFavoritesSerializer, 
+                            PersonWithKidsSerializer, PersonWithPersonMomentsSerializer, PersonWithPetsSerializer, 
+                            PersonWithReviewsSerializer], 
+               status: 200
     end
 
     def logged_in

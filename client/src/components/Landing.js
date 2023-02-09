@@ -3,8 +3,9 @@ import {
   Flex,
   Button,
   Text,
-  VStack,
+  HStack,
   useBreakpointValue,
+  Heading
 } from "@chakra-ui/react";
 import dadabasephoto from "../dadabase.jpg";
 import { Link as RouterLink } from "react-router-dom";
@@ -17,17 +18,19 @@ function Landing() {
       h={"100vh"}
       backgroundImage={dadabasephoto}
       backgroundSize={"cover"}
-      backgroundPosition={"center center"}
+      backgroundPosition={"center"}
+      backgroundRepeat={"no-repeat"}
     >
-      <VStack
+      <HStack
         w={"full"}
-        justify={"center"}
+        justify={"right"}
         px={useBreakpointValue({ base: 4, md: 8 })}
         bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
       >
         <Stack maxW={"2xl"} align={"flex-start"} spacing={6}>
+            <Heading >DadaBase</Heading>
           <Text
-            color={"white"}
+            color={"whiteAlpha.800"}
             align={"right"}
             fontWeight={700}
             lineHeight={1.2}
@@ -39,6 +42,16 @@ function Landing() {
           <Stack direction={"row"}>
             <Button
               as={RouterLink}
+              to="/login"
+              bg={"gray.600"}
+              rounded={"full"}
+              color={"white"}
+              _hover={{ bg: "gray.500" }}
+            >
+              Login
+            </Button>
+            <Button
+              as={RouterLink}
               to="/signup"
               bg={"blue.700"}
               rounded={"full"}
@@ -47,19 +60,9 @@ function Landing() {
             >
               Signup
             </Button>
-            <Button
-              as={RouterLink}
-              to="/login"
-              bg={"whiteAlpha.500"}
-              rounded={"full"}
-              color={"white"}
-              _hover={{ bg: "whiteAlpha.700" }}
-            >
-              Login
-            </Button>
           </Stack>
         </Stack>
-      </VStack>
+      </HStack>
     </Flex>
   );
 }

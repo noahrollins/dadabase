@@ -55,22 +55,19 @@ function Login({ onLogin }) {
       backgroundPosition={"center center"}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"} color={"white"}>Welcome back, Dad!</Heading>
-          <Text fontSize={"lg"} color={"white"}>
-            new to DaDabase?{" "}
-            <Link color={"cyan.200"} as={RouterLink} to="/signup" on>
-              Signup!
-            </Link>{" "}
-            ✌️
-          </Text>
-        </Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={8}
-        >
+        <Box rounded={"lg"} bg={"whiteAlpha.600"} boxShadow={"lg"} p={8}>
+          <Stack align={"center"}>
+            <Heading fontSize={"4xl"} color={"white"}>
+              Welcome back, Dad!
+            </Heading>
+            <Text fontSize={"lg"} color={"white"}>
+              new to DaDabase?{" "}
+              <Link color={"blue.700"} as={RouterLink} to="/signup" on>
+                Signup!
+              </Link>{" "}
+              ✌️
+            </Text>
+          </Stack>
           <Stack spacing={4}>
             <FormControl
               id="email"
@@ -78,7 +75,7 @@ function Login({ onLogin }) {
               onChange={(e) => setEmail(e.target.value)}
             >
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input bg="white" type="email" />
             </FormControl>
             <FormControl
               id="password"
@@ -86,7 +83,7 @@ function Login({ onLogin }) {
               onChange={(e) => setPassword(e.target.value)}
             >
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input bg="white" type="password" />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -94,8 +91,7 @@ function Login({ onLogin }) {
                 align={"start"}
                 justify={"space-between"}
               >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
+                <Link color={"blue.700"}>Forgot password?</Link>
               </Stack>
               <Button
                 onClick={(e) => {

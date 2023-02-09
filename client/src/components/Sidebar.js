@@ -77,7 +77,7 @@ function Sidebar() {
             else setNavSize("small");
           }}
         />
-        <NavItem navSize={navSize} icon={MdAssignmentInd} title={"Signup"} path={"/mypage"} />
+        <NavItem navSize={navSize} icon={MdAssignmentInd} title={"My DaDabase"} path={"/mypage"} />
         <NavItem navSize={navSize} icon={MdChildFriendly} title={"Kids"} path={"/kids"}/>
         <NavItem navSize={navSize} icon={MdPets} title={"Pets"} path={"/pets"} />
         <NavItem navSize={navSize} icon={MdOutlineLogout} title={"Logout"} path={"/"} onClick={(e)=>{handleLogoutClick()}}/>

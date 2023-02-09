@@ -11,5 +11,4 @@ class Person < ApplicationRecord
     has_many :reviewed_by, through: :reviews, source: :reviewer
 
     validates :name, presence: true
-    validates :email, presence: true
   end
