@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Progress,
   Box,
@@ -10,58 +10,77 @@ import {
   GridItem,
   FormLabel,
   Input,
-  Select,
+  Text,
+  Link,
   SimpleGrid,
   InputLeftAddon,
   InputGroup,
   Textarea,
   FormHelperText,
   InputRightElement,
+  Select,
 } from "@chakra-ui/react";
-import dadabasephoto from "../dadabase.jpg";
+import dadabasephoto from "../dadabase2.jpg";
 import { useToast } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-
-const Form1 = () => {
+const Form1 = ({
+  name,
+  setFirstName,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  passwordConfirmation,
+  setPasswordConfirmation,
+}) => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (
     <>
-      <Heading w="100%" textAlign={"center"}  mb="2%">
+      <Heading w="100%" textAlign={"center"} mb="2%">
         Dad Basics
       </Heading>
       <Flex>
-        <FormControl mr="5%">
-          <FormLabel htmlFor="first-name" >
-            First name
-          </FormLabel>
-          <Input bg="white" id="first-name" placeholder="First name" />
-        </FormControl>
-
         <FormControl>
-          <FormLabel htmlFor="last-name" >
-            Last name
-          </FormLabel>
-          <Input bg="white" id="last-name" placeholder="First name" />
+          <FormLabel htmlFor="first-name">First name</FormLabel>
+          <Input
+            bg="white"
+            id="first-name"
+            placeholder="First name"
+            value={name}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
         </FormControl>
       </Flex>
       <FormControl mt="2%">
-        <FormLabel htmlFor="email" >
-          Email address
-        </FormLabel>
-        <Input bg="white" id="email" type="email" placeholder="me@example.com" />
-        <FormHelperText color="white">We'll never share your email.</FormHelperText>
+        <FormLabel htmlFor="email">Email address</FormLabel>
+        <Input
+          bg="white"
+          id="email"
+          type="email"
+          placeholder="me@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <FormHelperText color="white">
+          We'll never share your email.
+        </FormHelperText>
       </FormControl>
-
-      <FormControl>
-        <FormLabel htmlFor="password"  mt="2%">
+      <FormControl value={password}>
+        <FormLabel htmlFor="password" mt="2%">
           Password
         </FormLabel>
         <InputGroup size="md">
-          <Input bg="white"
+          <Input
+            bg="white"
             pr="4.5rem"
             type={show ? "text" : "password"}
             placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -70,15 +89,19 @@ const Form1 = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <FormControl>
-        <FormLabel htmlFor="password"  mt="2%">
+      <FormControl value={passwordConfirmation}>
+        <FormLabel htmlFor="password" mt="2%">
           Password Confirmation
         </FormLabel>
         <InputGroup size="md">
-          <Input bg="white"
+          <Input
+            bg="white"
             pr="4.5rem"
             type={show ? "text" : "password"}
             placeholder="Confirm password"
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            autoComplete="current-password"
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -91,16 +114,24 @@ const Form1 = () => {
   );
 };
 
-const Form2 = () => {
+const Form2 = ({
+  nickname,
+  setNickname,
+  dateOfBirth,
+  setDateOfBirth,
+  spouse,
+  setSpouse,
+  zipCode,
+  setZipCode,
+}) => {
   return (
     <>
-      <Heading w="100%" textAlign={"center"}  mb="2%">
+      <Heading w="100%" textAlign={"center"} mb="2%">
         User Details
       </Heading>
       <FormControl as={GridItem} colSpan={[6, 3]}>
         <FormLabel
           htmlFor="name"
-
           color="gray.700"
           _dark={{
             color: "gray.50",
@@ -108,7 +139,8 @@ const Form2 = () => {
         >
           Nickname
         </FormLabel>
-        <Input bg="white"
+        <Input
+          bg="white"
           type="text"
           name="Nickname"
           id="nickname"
@@ -119,13 +151,14 @@ const Form2 = () => {
           w="full"
           rounded="md"
           placeholder="dad-a-roony"
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
         />
       </FormControl>
 
       <FormControl as={GridItem} colSpan={6}>
         <FormLabel
           htmlFor="date_of_birth"
-
           color="gray.700"
           _dark={{
             color: "gray.50",
@@ -134,7 +167,8 @@ const Form2 = () => {
         >
           Date of Birth
         </FormLabel>
-        <Input bg="white"
+        <Input
+          bg="white"
           type="date"
           name="date_of_birth"
           id="date_of_birth"
@@ -144,13 +178,14 @@ const Form2 = () => {
           size="sm"
           w="full"
           rounded="md"
+          value={dateOfBirth}
+          onChange={(e) => setDateOfBirth(e.target.value)}
         />
       </FormControl>
 
       <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
         <FormLabel
           htmlFor="name_of_spouse"
-
           color="gray.700"
           _dark={{
             color: "gray.50",
@@ -159,7 +194,8 @@ const Form2 = () => {
         >
           Name of Spouse
         </FormLabel>
-        <Input bg="white"
+        <Input
+          bg="white"
           type="text"
           name="name_of_spouse"
           id="name_of_spouse"
@@ -169,14 +205,14 @@ const Form2 = () => {
           size="sm"
           w="full"
           rounded="md"
+          value={spouse}
+          onChange={(e) => setSpouse(e.target.value)}
         />
       </FormControl>
-
 
       <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
         <FormLabel
           htmlFor="postal_code"
-
           color="gray.700"
           _dark={{
             color: "gray.50",
@@ -185,7 +221,8 @@ const Form2 = () => {
         >
           ZIP / Postal
         </FormLabel>
-        <Input bg="white"
+        <Input
+          bg="white"
           type="integer"
           name="postal_code"
           id="postal_code"
@@ -195,83 +232,157 @@ const Form2 = () => {
           size="sm"
           w="full"
           rounded="md"
+          value={zipCode}
+          onChange={(e) => setZipCode(e.target.value)}
         />
       </FormControl>
     </>
   );
 };
 
-const Form3 = () => {
+const Form3 = ({ name, petNumber, setPetNumber, kidNumber, setKidNumber }) => {
+
+
+
+  useEffect(() => {
+    setKidNumber(kidNumber);
+    setPetNumber(petNumber);
+  }, [petNumber, kidNumber]);
+
+
   return (
     <>
-      <Heading w="100%" textAlign={"center"} >
-        Social Handles
+      <Heading w="100%" textAlign={"center"} pb={2}>
+        Kids and Pets
       </Heading>
-      <SimpleGrid columns={1} spacing={6}>
-        <FormControl as={GridItem} colSpan={[3, 2]}>
+      <SimpleGrid minChildWidth='120px' spacing={4}>
+        <FormControl as={GridItem} onChange={(e) => setKidNumber(e.target.value)}>
           <FormLabel
-            fontSize="sm"
-            fontWeight="md"
             color="gray.700"
             _dark={{
               color: "gray.50",
             }}
           >
-            Website
+            How many kids, {name}?
           </FormLabel>
-          <InputGroup size="sm">
-            <InputLeftAddon
-              bg="gray.50"
-              _dark={{
-                bg: "gray.800",
-              }}
-              color="gray.500"
-              rounded="md"
-            >
-              http://
-            </InputLeftAddon>
-            <Input bg="white"
-              type="tel"
-              placeholder="www.example.com"
-              focusBorderColor="brand.400"
-              rounded="md"
-            />
-          </InputGroup>
+          <Select placeholder="#"  bg={'white'} onChange={(e) => setKidNumber(e.target.value)} value={kidNumber}>
+            <option value={0}>0</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+            <option value={9}>9 - you can always add more later! 😁</option>
+          </Select>
         </FormControl>
-
-        <FormControl id="email" mt={1}>
+        <FormControl as={GridItem} >
           <FormLabel
-            fontSize="sm"
-            fontWeight="md"
             color="gray.700"
             _dark={{
               color: "gray.50",
             }}
           >
-            About
+            What about pets?
           </FormLabel>
-          <Textarea
-            placeholder="you@example.com"
-            rows={3}
-            shadow="sm"
-            focusBorderColor="brand.400"
-            fontSize={{
-              sm: "sm",
-            }}
-          />
-          <FormHelperText>
-            Brief description for your profile. URLs are hyperlinked.
-          </FormHelperText>
+          <Select placeholder="#"  bg={'white'} onChange={(e) => setPetNumber(e.target.value)} value={petNumber}>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+            <option value={9}>9 - you can always add more later! 😁</option>
+          </Select>
         </FormControl>
       </SimpleGrid>
     </>
   );
 };
 
-export default function Signup({onLogin}) {
+export default function Signup({ onLogin }) {
   const toast = useToast();
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(33.33);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [nickname, setNickname] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [spouse, setSpouse] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [petNumber, setPetNumber] = useState(0);
+  const [kidNumber, setKidNumber] = useState(0);
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setErrors([]);
+    setIsLoading(true);
+    fetch("/people", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        password_confirmation: passwordConfirmation,
+        name: firstName,
+        nickname,
+        date_of_birth: dateOfBirth,
+        spouse,
+        zip_code: zipCode,
+      }),
+    }).then((r) => {
+      setIsLoading(false);
+      setEmail("");
+      setFirstName("");
+      setPassword("");
+      setPasswordConfirmation("");
+      if (r.ok) {
+        r.json().then((user) => onLogin(user));
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        navigate("/login");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+    for (let i = 0; i < kidNumber; i++) {
+      fetch(`/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: { kid: true } }),
+      });
+    }
+
+    for (let i = 0; i < petNumber; i++) {
+      fetch("http://your-api-endpoint.com/pets", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pet: { name: "Pet name" } }),
+      });
+    }
+  };
+  
+
   return (
     <Flex
       w={"full"}
@@ -285,7 +396,6 @@ export default function Signup({onLogin}) {
     >
       <Box
         bg="whiteAlpha.600"
-
         rounded="lg"
         shadow="lg"
         maxWidth={800}
@@ -300,7 +410,39 @@ export default function Signup({onLogin}) {
           mx="5%"
           isAnimated
         ></Progress>
-        {step === 1 ? <Form1 onLogin={onLogin}/> : step === 2 ? <Form2 /> : <Form3 />}
+        {step === 1 ? (
+          <Form1
+            onLogin={onLogin}
+            name={firstName}
+            setFirstName={setFirstName}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            passwordConfirmation={passwordConfirmation}
+            setPasswordConfirmation={setPasswordConfirmation}
+          />
+        ) : step === 2 ? (
+          <Form2
+            nickname={nickname}
+            setNickname={setNickname}
+            dateOfBirth={dateOfBirth}
+            setDateOfBirth={setDateOfBirth}
+            spouse={spouse}
+            setSpouse={setSpouse}
+            zipCode={zipCode}
+            setZipCode={setZipCode}
+          />
+        ) : (
+          <Form3 name={firstName} kidNumber={kidNumber} setKidNumber={setKidNumber} petNumber={petNumber} setPetNumber={setPetNumber} />
+        )}
+        <Text fontSize={"sm"} color={"white"} pt={5}>
+          Already a member?{" "}
+          <Link color={"blue.700"} as={RouterLink} to="/login">
+            Login
+          </Link>{" "}
+          👊
+        </Text>
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
             <Flex>
@@ -330,6 +472,7 @@ export default function Signup({onLogin}) {
                 }}
                 colorScheme="blue"
                 variant="outline"
+                mr="5%"
               >
                 Next
               </Button>
@@ -339,15 +482,7 @@ export default function Signup({onLogin}) {
                 w="7rem"
                 colorScheme="red"
                 variant="solid"
-                onClick={() => {
-                  toast({
-                    title: "Account created.",
-                    description: "We've created your account for you.",
-                    status: "success",
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }}
+                onClick={handleSubmit}
               >
                 Submit
               </Button>

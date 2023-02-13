@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_03_053053) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_09_065453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,14 +25,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_053053) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "people_id", null: false
     t.string "sports"
     t.string "artists"
     t.string "activities"
     t.string "subjects"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["people_id"], name: "index_favorites_on_people_id"
+    t.integer "person_id"
   end
 
   create_table "kid_dads", force: :cascade do |t|
@@ -95,7 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_053053) do
 
   add_foreign_key "comments", "moments"
   add_foreign_key "comments", "people"
-  add_foreign_key "favorites", "people", column: "people_id"
+  add_foreign_key "favorites", "people"
   add_foreign_key "kid_dads", "people", column: "dad_id"
   add_foreign_key "kid_dads", "people", column: "kid_id"
   add_foreign_key "moments", "people", column: "dad_id"

@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import dadabasephoto from "../dadabase.jpg";
+import dadabasephoto from "../dadabase2.jpg";
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -57,16 +57,10 @@ function Login({ onLogin }) {
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Box rounded={"lg"} bg={"whiteAlpha.600"} boxShadow={"lg"} p={8}>
           <Stack align={"center"}>
-            <Heading fontSize={"4xl"} color={"white"}>
+            <Heading fontSize={"4xl"} >
               Welcome back, Dad!
             </Heading>
-            <Text fontSize={"lg"} color={"white"}>
-              new to DaDabase?{" "}
-              <Link color={"blue.700"} as={RouterLink} to="/signup" on>
-                Signup!
-              </Link>{" "}
-              ✌️
-            </Text>
+
           </Stack>
           <Stack spacing={4}>
             <FormControl
@@ -85,26 +79,27 @@ function Login({ onLogin }) {
               <FormLabel>Password</FormLabel>
               <Input bg="white" type="password" />
             </FormControl>
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Link color={"blue.700"}>Forgot password?</Link>
-              </Stack>
+            <Stack spacing={10} >
+
               <Button
                 onClick={(e) => {
                   handleSubmit(e);
                 }}
-                bg={"blue.400"}
+                bg={"blue.700"}
                 color={"white"}
                 _hover={{
-                  bg: "blue.500",
+                  bg: "blue.900",
                 }}
               >
                 Sign in
               </Button>
+              <Heading fontSize={"xl"}  pb={2} align={"center"}>
+              New to DaDabase?{" "}
+              <Link color={"blue.700"} as={RouterLink} to="/signup" on>
+                Signup!
+              </Link>{" "}
+              ✌️
+            </Heading>
             </Stack>
           </Stack>
         </Box>

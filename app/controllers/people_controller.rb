@@ -5,9 +5,7 @@ class PeopleController < ApplicationController
 
     def show
         render json: person, include: [:comments, :dads, :favorites, :kids, :person_moments, :pets, :reviews, :reviewed_by], 
-               serializer: [PersonWithCommentssSerializer, PersonWithDadsSerializer, PersonWithFavoritesSerializer, 
-                            PersonWithKidsSerializer, PersonWithPersonMomentsSerializer, PersonWithPetsSerializer, 
-                            PersonWithReviewsSerializer], 
+               serializer: PersonWithAllSerializer,
                status: 200
     end
 

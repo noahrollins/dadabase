@@ -48,7 +48,7 @@ function Sidebar() {
     });
   }
 
-
+  console.log(user)
   return (
     <Flex
       pos="sticky"

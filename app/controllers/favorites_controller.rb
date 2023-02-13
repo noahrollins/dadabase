@@ -12,6 +12,6 @@ class FavoritesController < ApplicationController
     private
 
     def favorite_params
-        params.permit(:sport, :team, :date_of_birth, :email, :zipcode, :spouse :password, :password_confirmation)
+        params.permit(:sport, :artists, :activities, :subjects)
     end
 end
