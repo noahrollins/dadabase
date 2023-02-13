@@ -22,7 +22,6 @@ import {
   
   function MyKids() {
     const { user, setUser } = useContext(UserContext);
-    console.log(user.favorites);
     useEffect(() => {
       fetch(`/people/${user.id}`, {
         method: "GET",
@@ -35,6 +34,7 @@ import {
           console.log(err);
         });
     }, []);
+    
     
   
     return (
