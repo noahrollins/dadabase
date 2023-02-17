@@ -1,7 +1,6 @@
 class PersonWithAllSerializer < ActiveModel::Serializer
-    attributes :id, :name, :nickname, :date_of_birth, :email, :zipcode, :spouse
-    has_many :kids, foreign_key: :kid_id, class_name: "KidDad"
-    has_many :dads, foreign_key: :dad_id, class_name: "KidDad"
+    attributes :id, :name, :nickname, :date_of_birth, :email, :zipcode, :spouse, :dads, :kids
+
     has_many :favorites
     has_many :pets
     has_many :person_moments
@@ -9,5 +8,9 @@ class PersonWithAllSerializer < ActiveModel::Serializer
     has_many :comments
     has_many :reviews, foreign_key: :reviewer_id
     has_many :reviewed_by, through: :reviews, source: :reviewer
-  end
-  
+
+    has_many :dads, serializer: PersonSerializer
+    has_many :kids, serializer: PersonSerializer
+
+end 
+

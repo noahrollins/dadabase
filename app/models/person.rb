@@ -1,7 +1,13 @@
 class Person < ApplicationRecord
     has_secure_password
-    has_many :kids, foreign_key: :kid_id, class_name: "KidDad"
-    has_many :dads, foreign_key: :dad_id, class_name: "KidDad"
+    has_many :kid_dads
+
+    has_many :kid_dads_as_dad, foreign_key: :dad_id, class_name: 'KidDad'
+    has_many :kids, through: :kid_dads_as_dad, source: :kid
+  
+    has_many :kid_dads_as_kid, foreign_key: :kid_id, class_name: 'KidDad'
+    has_many :dads, through: :kid_dads_as_kid, source: :dad
+
     has_many :favorites
     has_many :pets
     has_many :person_moments

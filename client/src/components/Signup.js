@@ -339,7 +339,7 @@ export default function Signup({ onLogin }) {
         nickname,
         date_of_birth: dateOfBirth,
         spouse,
-        zip_code: zipCode,
+        zipcode: zipCode,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -361,25 +361,6 @@ export default function Signup({ onLogin }) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
-    for (let i = 0; i < kidNumber; i++) {
-      fetch(`/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: { kid: true } }),
-      });
-    }
-
-    for (let i = 0; i < petNumber; i++) {
-      fetch("http://your-api-endpoint.com/pets", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ pet: { name: "Pet name" } }),
-      });
-    }
   };
   
 

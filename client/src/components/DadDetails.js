@@ -52,7 +52,7 @@ function DadDetails() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setUser({ ...user, email: email, nickname: nickname, spouse: spouseName, birthday: birthday, zip_code: zipCode });
+        setUser({ ...user, email: email, nickname: nickname, spouse: spouseName, date_of_birth: birthday, zip_code: zipCode });
       })
       .catch((error) => {
         console.error('Error:', error);

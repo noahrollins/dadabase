@@ -1,5 +1,6 @@
 import {
     Avatar,
+    Center,
     Flex,
     Box,
     Card,
@@ -17,8 +18,9 @@ import {
     useColorModeValue,
   } from "@chakra-ui/react";
   import React, { useContext, useEffect } from "react";
+import { MdFilterCenterFocus } from "react-icons/md";
   import { UserContext } from "./contexts/UserContext";
-  import FavoritesCard from "./FavoritesCard";
+  import AddKidPrompt from "./AddKidPrompt";
   
   function MyKids() {
     const { user, setUser } = useContext(UserContext);
@@ -35,20 +37,16 @@ import {
         });
     }, []);
     
-    
-  
-    return (
-      <Flex
-        alignItems={"flex-start"}
-        left="5"
-        h="95vh"
-        w="100%"
-        marginTop="2.5vh"
-        boxShadow="0 4px 12px 0 rgba(0,0,0,0.05)"
-        borderRadius={"30px"}
-      >
-      </Flex>
-    );
+
+    if (user.kids.length === 0) {
+        return (
+            <Center w={"100%"}>
+                <AddKidPrompt/>
+            </Center>
+        )
+    } else {}
+
+
   }
   
   export default MyKids;
