@@ -89,7 +89,7 @@ function App() {
                 <Flex pr={2}>
                   <Sidebar />
                 </Flex>
-                <MyKids />
+                <MyPets />
               </Flex>
             </div>
           }

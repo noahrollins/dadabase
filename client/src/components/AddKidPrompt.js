@@ -1,4 +1,4 @@
-import { Center, Box, Button, Text, Collapse } from "@chakra-ui/react";
+import { Center, Box, Button, Text, Collapse, useRangeSlider } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 import AddKidForm from "./AddKidForm";
@@ -9,7 +9,6 @@ function AddKidPrompt() {
 
   const handleToggle = () => {
     setShow(!show);
-    console.log(show);
   };
 
   useEffect(() => {
@@ -24,12 +23,13 @@ function AddKidPrompt() {
       });
   }, []);
 
+  
   return (
     <Center>
       <Box>
-        <Text fontSize="2xl">Hmmm, no kids in here...</Text>
+        <Text fontSize="2xl">{user.kids.length == 0 ? "Hmmm... no kids in here" : "Got more?"}</Text>
         <Button onClick={handleToggle} m={2}>
-          Add Kiddos!
+          {user.kids.length == 0 ? "Add a Kid" : "Add Another Kid"}
         </Button>
         <Collapse in={show} animateOpacity={show}>
           <AddKidForm />
