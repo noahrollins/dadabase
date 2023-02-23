@@ -40,17 +40,18 @@ function KidCard({ kid }) {
 
   const daysUntilBirthday = differenceInDays(nextBirthday, currentDate);
   return (
-    <Card>
+    <Card borderRadius="30px" >
       <CardHeader>
         <Heading>{kid.name}</Heading>
-      </CardHeader>
-      <CardBody>
+        <Text>{kid.date_of_birth}</Text>
         <Text>{age} years old</Text>
         <Text>
           {daysUntilBirthday < 31
-            ? `Only ${daysUntilBirthday} days left!`
-            : `${daysUntilBirthday} days to go!`}
+            ? `Only ${daysUntilBirthday} days left! Are you ready, ${user.name}?`
+            : `${daysUntilBirthday} days to go until ${kid.name}\'s birthday!`}
         </Text>
+      </CardHeader>
+      <CardBody>
       </CardBody>
     </Card>
   );

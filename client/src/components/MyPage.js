@@ -20,6 +20,7 @@ import React, { useContext, useEffect } from "react";
 import { UserContext } from "./contexts/UserContext";
 import DadDetails from "./DadDetails";
 import FavoritesCard from "./FavoritesCard";
+import MyMoments from "./MyMoments";
 
 function MyPage() {
   const { user, setUser } = useContext(UserContext);
@@ -49,6 +50,7 @@ function MyPage() {
       borderRadius={"30px"}
     >
       <DadDetails />
+      <MyMoments />
     </Flex>
   );
 }

@@ -25,34 +25,38 @@ import KidCard from "./KidCard";
 
 function MyKids() {
   const { user, setUser } = useContext(UserContext);
-  useEffect(() => {
-    fetch(`/people/${user.id}`, {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`/people/${user.id}`, {
+  //     method: "GET",
+  //     credentials: "include",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {})
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   const userKids = user.kids.map((kid) => {
-    return (<KidCard 
-    key={kid.id}
-    kid={kid} 
-    />)
+    return <KidCard key={kid.id} kid={kid} />;
   });
 
   if (user.kids.length === 0) {
-
     return (
       <Center w={"100%"}>
         <AddKidPrompt />
       </Center>
     );
   } else {
-    return <Center>{userKids} <AddKidPrompt /></Center>;
+    return (
+      <Center w={"100%"}>
+        <Stack>
+        {userKids}
+        <StackDivider />
+        <AddKidPrompt />
+        </Stack>
+      </Center>
+    );
   }
 }
 

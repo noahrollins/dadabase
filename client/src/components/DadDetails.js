@@ -60,7 +60,7 @@ function DadDetails() {
   };
 
   return (
-    <Card borderRadius="30px" >
+    <Card borderRadius="30px" w={"100%"} >
       <CardHeader>
         <Avatar />
         <Flex ml={4} mt={1}>

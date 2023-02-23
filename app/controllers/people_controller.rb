@@ -12,7 +12,7 @@ class PeopleController < ApplicationController
     def logged_in
         session_user = Person.find_by(id: session[:user_id])
         if session_user
-            render json: session_user, include: [:comments, :favorites, :person_moments, :pets, :reviews, :reviewed_by, :dads, :kids ], serializer: PersonWithAllSerializer
+            render json: session_user, include: [:comments, :favorites, :person_moments, :moments, :pets, :reviews, :reviewed_by, :dads, :kids ], serializer: PersonWithAllSerializer
         else
           render json: { errors: 'unauthorized entry'}, status: :unauthorized
         end

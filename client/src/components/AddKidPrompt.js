@@ -27,7 +27,7 @@ function AddKidPrompt() {
   return (
     <Center>
       <Box>
-        <Text fontSize="2xl">{user.kids.length == 0 ? "Hmmm... no kids in here" : "Got more?"}</Text>
+        <Text fontSize="2xl">{user.kids.length == 0 ? "Hmmm... no kids in here" : "More kids?"}</Text>
         <Button onClick={handleToggle} m={2}>
           {user.kids.length == 0 ? "Add a Kid" : "Add Another Kid"}
         </Button>
